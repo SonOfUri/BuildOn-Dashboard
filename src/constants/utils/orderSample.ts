@@ -1,0 +1,46 @@
+export const orderSample = [
+    {
+        id: 64789,
+        type: "Lend",
+        amount:"9890",
+        token:"/tether.svg",
+        date: "01/09/24",
+        icon1:"/Lock.svg",
+        icon2:"/Lock.svg",
+    },
+     {
+        id: 34568,
+        type: "Borrow",
+        amount:"19234",
+        token:"/tether.svg",
+        date: "01/09/24",
+        icon1:"/Lock.svg",
+        icon2:"/Lock.svg",
+    },
+      {
+        id: 65448,
+        type: "Lend",
+        amount:"9890",
+        token:"/tether.svg",
+        date: "01/09/24",
+        icon1:"/Lock.svg",
+        icon2:"/Lock.svg",
+    }, {
+        id: 44568,
+        type: "Lend",
+        amount:"9890",
+        token:"/tether.svg",
+        date: "01/09/24",
+        icon1:"/Lock.svg",
+        icon2:"/Lock.svg",
+    }, {
+        id: 54789,
+        type: "Borrow",
+        amount:"9890",
+        token:"/tether.svg",
+        date: "01/09/24",
+        icon1:"/Lock.svg",
+        icon2:"/Lock.svg",
+    },
+
+];

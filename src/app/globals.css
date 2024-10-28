@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+:root {
+	--background: #000;
+	--foreground: #fff;
+	/* --scrollbar-bg: #1e1e1e;
+	--scrollbar-handle: #ff4d00;
+	--scrollbar-handle-hover: #e63e00; */
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #000;
+		--foreground: #fff;
+	}
+}
+
+body {
+	color: var(--foreground);
+	background: var(--background);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+/* WebKit-based browsers */
+/* ::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-handle);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-handle-hover);
+} */
+
+/* Firefox */
+/* html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--scrollbar-handle) var(--scrollbar-bg);
+} */
+
+.custom-corner-header {
+	position: relative;
+}
+
+/* Applying the border corners */
+.custom-corner-header::before,
+.custom-corner-header::after,
+.custom-corner-header div::before,
+.custom-corner-header div::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border: 1px solid #ff4d00;
+}
+
+/* Top-left corner */
+.custom-corner-header::before {
+	top: 0;
+	left: 0;
+	clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Top-right corner */
+.custom-corner-header::after {
+	top: 0;
+	right: 0;
+	clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+/* Bottom-left corner */
+.custom-corner-header div::before {
+	bottom: 0;
+	left: 0;
+	clip-path: polygon(0 100%, 0 0, 100% 100%);
+}
+
+/* Bottom-right corner */
+.custom-corner-header div::after {
+	bottom: 0;
+	right: 0;
+	clip-path: polygon(100% 100%, 100% 0, 0 100%);
+}
+
+.above1 {
+	background: linear-gradient(
+		180deg,
+		rgba(0, 128, 0, 1),
+		rgba(0, 255, 0, 0.9),
+		rgba(255, 165, 0, 0.9)
+	);
+}
+
+.one {
+	background: linear-gradient(
+		180deg,
+		rgba(0, 128, 0, 0.3),
+		rgba(0, 255, 0, 0.7),
+		rgba(255, 165, 0, 0.9)
+	);
+}
+
+.btw051_099 {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 0, 0.9) 100%,
+		rgba(173, 255, 47, 0.9) 0%
+	);
+}
+
+.btw03_05 {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 165, 0, 0.9) 0%,
+		/* Orange */ rgba(255, 69, 0, 0.9) 100% /* Reddish */
+	);
+}
+
+.below03 {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 0, 0, 0.9) 0%,
+		rgba(139, 0, 0, 0.9) 100%
+	);
+}
+
+.filledInActive {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.scroll-smooth {
+	scroll-behavior: smooth;
+}
+
+.scale-110 {
+	transform: scale(1.1);
+	transition: transform 0.3s ease;
+}
+
+.scale-100 {
+	transform: scale(1);
+	transition: transform 0.3s ease;
+}
+
+/* UI MODIFICATION LIBRARY START*/
+/* UI MODIFICATION LIBRARY START*/
+
+/* CUSTOM SCROLLBAR */
+
+*::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #fff;
+}
+
+*::-webkit-scrollbar {
+	width: 7.55px;
+	background-color: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #000000;
+	border: 1.5px solid #555555;
+}
+
+/* Define the active-link class */
+.active-link {
+	position: relative;
+}
+
+.active-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -30px; /* Adjust the distance between the underline and the link text */
+	height: 5px; /* Adjust the thickness of the underline */
+	background-color: rgb(221, 79, 0); /* Adjust to your custom color */
+	transform: scaleX(0); /* Start with the underline hidden */
+	transform-origin: left;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	transition: transform 0.3s ease-out; /* Animation for the underline */
+}
+
+.active-link:hover::after,
+.active-link.active::after {
+	transform: scaleX(1); /* Expand the underline when active or hovered */
+}
+
+/* Mobile specific adjustments using media queries */
+@media (max-width: 640px) {
+	.active-link::after {
+		bottom: -3px; /* Move the underline closer to the text on mobile */
+		height: 2px; /* Make the underline thinner for a cleaner look on smaller screens */
+	}
+
+	/* You can also adjust padding for mobile links */
+	.active-link {
+		padding-bottom: 6px; /* Slightly reduce padding for mobile */
+	}
+}
+
+/* Dashboard Card Classes */
+.portfolio-card {
+	/* border: 1px solid #dd4d003f; */
+	/* box-shadow: rgba(221, 79, 0, 0.4) -5px 5px, rgba(221, 79, 0, 0.3) -10px 10px, rgba(221, 79, 0, 0.2) -15px 15px, rgba(221, 79, 0, 0.1) -20px 20px, rgba(221, 79, 0, 0.05) -25px 25px; */
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 16px,
+		rgba(255, 255, 255, 0.1) 0px 8px 24px,
+		rgba(255, 255, 255, 0.1) 0px 16px 56px;
+}
+
+.profit-card {
+	/* border: 1px solid #dd4d003f; */
+	/* box-shadow: rgba(221, 79, 0, 0.4) 0px 5px, rgba(221, 79, 0, 0.3) 0px 10px, rgba(221, 79, 0, 0.2) 0px 15px, rgba(221, 79, 0, 0.1) 0px 20px, rgba(221, 79, 0, 0.05) 0px 25px; */
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 16px,
+		rgba(255, 255, 255, 0.1) 0px 8px 24px,
+		rgba(255, 255, 255, 0.1) 0px 16px 56px;
+}
+
+.health-card {
+	/* border: 1px solid #dd4d003f; */
+	/* box-shadow: rgba(221, 79, 0, 0.4) 5px 5px, rgba(221, 79, 0, 0.3) 10px 10px, rgba(221, 79, 0, 0.2) 15px 15px, rgba(221, 79, 0, 0.1) 20px 20px, rgba(221, 79, 0, 0.05) 25px 25px; */
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 16px,
+		rgba(255, 255, 255, 0.1) 0px 8px 24px,
+		rgba(255, 255, 255, 0.1) 0px 16px 56px;
+}
+
+.portfolio-card:hover,
+.profit-card:hover,
+.health-card:hover {
+	box-shadow: rgba(255, 255, 255, 0.4) 0px 30px 190px;
+	cursor: pointer;
+	transform: scale(1.025);
+	transition: ease-out 0.5s;
+}
+
+/* Custom Button Hover Effect */
+.u-btn1:hover {
+	background-color: #dd4f00;
+	transform: scale(1.05);
+}
+
+.u-btn1::before,
+.u-btn1::after,
+.u-btn1 div::before,
+.u-btn1 div::after {
+	border: none !important;
+}
+
+/* Open Orders */
+.open-orders,
+.filled-orders {
+	cursor: grab;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.u-no-scroll-y {
+	overflow: hidden;
+}
+
+/* Shadow Link */
+.u-class-shadow {
+	box-shadow: rgba(255, 255, 255, 0.4) 0px 30px 190px;
+	border-radius: 5px;
+}
+
+.u-class-shadow-2 {
+	box-shadow: 13px 15px 77px 8px rgba(255, 255, 255, 0.29);
+	-webkit-box-shadow: 13px 15px 77px 8px rgba(255, 255, 255, 0.29);
+	-moz-box-shadow: 13px 15px 77px 8px rgba(255, 255, 255, 0.29);
+	border-radius: 5px;
+}
+
+.u-class-shadow-3 {
+	box-shadow: -197px -42px 363px -52px rgba(255, 255, 255, 0.35);
+	-webkit-box-shadow: -197px -42px 363px -52px rgba(255, 255, 255, 0.35);
+	-moz-box-shadow: -197px -42px 363px -52px rgba(255, 255, 255, 0.35);
+	border-radius: 5px;
+}
+
+.u-class-shadow-4{
+/* box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 2px 0px, rgba(255, 255, 255, 0.15) 0px 1px 3px 1px; */
+box-shadow: rgba(255, 255, 255, 0.27) 0px 0px 0.25em, rgba(255, 255, 255, 0.05) 0px 0.25em 1em;
+}
+
+/* UI MODIFICATION LIBRARY END*/
+/* UI MODIFICATION LIBRARY END*/
