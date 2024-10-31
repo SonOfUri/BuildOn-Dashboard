@@ -12,6 +12,8 @@ const PendingRepayments = () => {
   const [countdowns, setCountdowns] = useState<string[]>([]);
   const [totalPending, setTotalPending] = useState<number>(0); // State to track total pending payments
 
+  const filteredReq = activeReq?.filter(item => Number(ethers.formatEther(item.totalRepayment)) > 0) || [];
+
   const calculateCountdown = (timestamp: number) => {
     const now = new Date().getTime(); // Current time in milliseconds
     const returnDate = new Date(timestamp).getTime(); // Convert return date to milliseconds
@@ -28,11 +30,10 @@ const PendingRepayments = () => {
   };
 
   useEffect(() => {
-    if (!activeReq) return;
+    if (!filteredReq.length) return;
 
-    // Update countdowns for all active requests
     const updateCountdowns = () => {
-      const updatedCountdowns = activeReq.map((item) => calculateCountdown(item.returnDate));
+      const updatedCountdowns = filteredReq.map((item) => calculateCountdown(item.returnDate));
       setCountdowns(updatedCountdowns);
     };
 
@@ -40,21 +41,20 @@ const PendingRepayments = () => {
 
     const interval = setInterval(() => {
       updateCountdowns();
-    }, 60000); // Update every minute
+    }, 60000);
 
-    // Clear the interval when the component unmounts
     return () => clearInterval(interval);
-  }, [activeReq]);
+  }, [filteredReq]);
 
   useEffect(() => {
-    // Calculate the total pending repayments
-    if (activeReq) {
-      const total = activeReq.reduce((acc, item) => acc + Number(ethers.formatEther(item.totalRepayment)), 0);
-      setTotalPending(total); // Update the total pending state
+    if (filteredReq.length) {
+      const total = filteredReq.reduce((acc, item) => acc + Number(ethers.formatEther(item.totalRepayment)), 0);
+      setTotalPending(total);
     }
-  }, [activeReq]);
-
-  if (!activeReq?.length || totalPending === 0) {
+   }, [filteredReq]);
+  
+  
+  if (!filteredReq?.length || totalPending === 0) {
     return (
       <div className="bg-black py-6 w-full px-4 sm:px-6 font-[family-name:var(--font-outfit)] u-class-shadow">
         <h3 className="text-xl text-[#F6F6F6] font-medium">No Pending Repayments</h3>
@@ -77,7 +77,7 @@ const PendingRepayments = () => {
       </div>
 
       <div className="space-y-4 sm:space-y-6">
-        {activeReq.map((item, index) => {
+        {filteredReq.map((item, index) => {
           const tokenData = tokenImageMap[item.tokenAddress] || { image: "/defaultToken.svg", label: "Unknown" };
           const countdown = countdowns[index] || "Calculating...";
 
