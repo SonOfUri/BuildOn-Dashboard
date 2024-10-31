@@ -115,6 +115,9 @@ export const Header = () => {
                     <Link href="/marketplace" className={isActive("/marketplace")}>
                         Marketplace
                     </Link>
+                    <Link href="/supportedassets" className={isActive("/supportedassets")}>
+                        Assets
+                    </Link>
                 </nav>
 
                 <div className="flex items-center gap-2">
