@@ -21,40 +21,30 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
   const repay = useRepayLoan();
   const contract = getLendbitContract(readOnlyProvider);
   const [totalBorrowed, setTotalBorrowed] = useState(0);
-  console.log("ACTIVE",activeReq);
-  
-  // Asynchronous function to calculate total borrowed
-  const calculateTotalBorrowed = async () => {
-    if (activeReq) {
-      const values = await Promise.all(
-         activeReq.map(async (req) => {
-          // Fetch the value in USD using contract.getUsdValue
-          const usdValue = await contract.getUsdValue(req.tokenAddress, 1, 0);
-          
-          // Convert the repayment amount from wei to ether and back to number for summing
-          const formattedRepayment = parseFloat(ethers.formatEther(req.totalRepayment));
 
-          // Return the calculated value (formatted repayment amount here)
-          return (Number(usdValue)) * formattedRepayment;
+  // Filter out requests with totalRepayment of 0
+  const filteredReq = activeReq?.filter(req => parseFloat(ethers.formatEther(req.totalRepayment)) > 0) || [];
+
+  // Calculate total borrowed from filtered requests
+  const calculateTotalBorrowed = async () => {
+    if (filteredReq.length) {
+      const values = await Promise.all(
+        filteredReq.map(async (req) => {
+          const usdValue = await contract.getUsdValue(req.tokenAddress, 1, 0);
+          const formattedRepayment = parseFloat(ethers.formatEther(req.totalRepayment));
+          return Number(usdValue) * formattedRepayment;
         })
       );
       const total = values.reduce((acc, value) => Number(acc) + Number(value), 0);
-      setTotalBorrowed(total/ 1e18);
+      setTotalBorrowed(total / 1e18);
     }
   };
 
-  // useEffect to trigger the calculation when activeReq changes
   useEffect(() => {
     calculateTotalBorrowed();
-  }, [activeReq]);
+  }, [filteredReq]);
 
-   useEffect(() => {
-    console.log(totalBorrowed, "Total Borrowed Value");
-  }, [totalBorrowed]);
-
-
-  // Calculate power left based on total borrowed and collateral value
-  const powerLeft = collateralVal ? (100 - ((totalBorrowed * 100)) / (collateralVal * 0.8)) : 0;
+  const powerLeft = collateralVal ? (100 - ((totalBorrowed * 100) / (collateralVal * 0.8))) : 0;
   const actualPower = isNaN(powerLeft) ? 0 : powerLeft;
 
   return (
@@ -67,7 +57,7 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
           Total Collateral: <span className="pl-1">{`$${collateralVal ? (collateralVal * 0.8) : 0}`}</span>
         </h4>
         <h4 className="p-1">
-          Total Borrowed: <span className="pl-1">{`$${(totalBorrowed)}`}</span>
+          Total Borrowed: <span className="pl-1">{`$${totalBorrowed}`}</span>
         </h4>
       </div>
 
@@ -98,7 +88,7 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
           <table className="min-w-full text-[10px] text-center">
             <thead></thead>
             <tbody>
-              {activeReq?.map((item, index) => {
+              {filteredReq.map((item, index) => {
                 const tokenData = tokenImageMap[item.tokenAddress] || { image: "/Eye.svg", label: "None" };
 
                 return (
@@ -111,7 +101,7 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
                     <td className="pt-2">{ethers.formatEther(item.totalRepayment)}</td>
                     <td className="pt-2">{item.interest}%</td>
                     <td className="pt-2 flex justify-center">
-                      <Btn2 text="Repay" css="text-white/90 text-center"
+                      <Btn2 text="Repay" css="text-white/90 text-center bg-gray-600 px-2 py-1 rounded-md"
                         onClick={() => repay(item.requestId, item.tokenAddress, item.totalRepayment)}
                       />
                     </td>

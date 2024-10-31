@@ -66,7 +66,7 @@ export const Header = () => {
     return (
         <header className="bg-black md:p-6 p-4 w-full top-0 left-0 relative custom-corner-header">
             <div className="flex justify-between items-center w-full">
-                <Link href={"https://www.lendbit.finance/"} className="flex items-center gap-[6px]">
+                <Link href={"https://buildon.lendbit.finance/"} className="flex items-center gap-[6px]">
                     <Image
                         src="/logo.png"
                         alt="logo"

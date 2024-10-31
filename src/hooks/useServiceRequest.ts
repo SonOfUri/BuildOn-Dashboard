@@ -40,10 +40,11 @@ const useServiceRequest = () => {
           const receipt = await transaction.wait();
 
           if (receipt.status) {
-            return toast.success("Request serviced!",
+            toast.success("Request serviced!",
             {
               id: loadingToastId,
-            });
+              });
+            return router.push('/order');
           
           }
 
