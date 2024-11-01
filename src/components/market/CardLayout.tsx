@@ -198,7 +198,7 @@ const CardLayout = () => {
                                 <Image src={tokenImageMap[data.tokenAddress]?.image} alt={data.tokenAddress} width={37} height={36} priority quality={100} />
                                 <h2 className="text-lg font-semibold">{tokenImageMap[data.tokenAddress]?.label}</h2>
                             </div>
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
                                 <img src={data.avatarUrl} alt="avatar" width={24} height={24} />
                                 <p className="text-gray-400">Origin:</p>
                                 <p className="font-semibold">{data.author}</p>
@@ -248,7 +248,7 @@ const CardLayout = () => {
                                 <Image src={tokenImageMap[data.tokenAddress]?.image} alt={data.tokenAddress} width={37} height={36} priority quality={100} />
                                 <h2 className="text-lg font-semibold">{tokenImageMap[data.tokenAddress]?.label}</h2>
                             </div>
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
                                 <img src={data.avatarUrl} alt="avatar" width={24} height={24} />
                                 <p className="text-gray-400">Origin:</p>
                                 <p className="font-semibold">{data.author}</p>
