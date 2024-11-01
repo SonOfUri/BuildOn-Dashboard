@@ -1,14 +1,14 @@
 export type DashboardCardProps = {
   text: string;
   figure: string | number;
-  extraCSS?: string; 
-  icon?: React.ReactNode; 
+  extraCSS?: string;
+  icon?: React.ReactNode;
 };
 
 export interface HistoryProps {
   src: string;
   txName: string;
-  id: number;
+  id: string;
   date: string;
   tokenIcon: string;
   balance: string;
@@ -49,19 +49,19 @@ export interface LoanListing {
   max_amount: string;
   returnDate: number;
   interest: number;
-  status: string; 
+  status: string;
 }
 
 export interface Request {
-    requestId: number;
-    author: string;
-    amount: string;
-    interest: number;
-    totalRepayment: string;
-    returnDate: number;
-    lender: string;
-    tokenAddress: string;
-    status: string; 
+  requestId: number;
+  author: string;
+  amount: string;
+  interest: number;
+  totalRepayment: string;
+  returnDate: number;
+  lender: string;
+  tokenAddress: string;
+  status: string;
 }
 
 export interface Btn2Props {

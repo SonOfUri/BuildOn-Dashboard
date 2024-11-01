@@ -12,6 +12,7 @@ import { Spinner } from "@radix-ui/themes";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useEffect, useState, useMemo } from "react";
 
+
 export default function OrderPage() {
     const { address, isConnected } = useWeb3ModalAccount();
     const [isClient, setIsClient] = useState(false);
@@ -28,12 +29,12 @@ export default function OrderPage() {
             ...(borrowOrder?.map((order) => ({ ...order, type: "Borrow" })) || []),
             ...(lendOrder?.map((order) => ({ ...order, type: "Lend" })) || []),
         ];
-    }, [borrowOrder, lendOrder]); 
+    }, [borrowOrder, lendOrder]);
 
 
     const sortedOrders = useMemo(() => {
         return mergedOrders.sort((a, b) => b.returnDate - a.returnDate);
-    }, [mergedOrders]); 
+    }, [mergedOrders]);
 
     const formattedOrders = useMemo(() => {
         return sortedOrders.map((order) => ({
