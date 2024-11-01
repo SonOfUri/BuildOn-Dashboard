@@ -21,7 +21,7 @@ export const History = ({ src, txName, id, date, tokenIcon, balance }: HistoryPr
       </div>
       
       <div>
-        <h3 className="text-[18px] text-[#F6F6F6] font-medium">${balance}</h3>
+        <h3 className="text-[18px] text-[#F6F6F6] font-medium">{balance}</h3>
       </div>
     </div>
   );
