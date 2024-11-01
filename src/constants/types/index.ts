@@ -69,3 +69,11 @@ export interface Btn2Props {
   css?: string;
   onClick?: () => void;
 }
+
+export interface Allowances {
+  LINK: number;
+  USDC: number;
+  USDT: number;
+  DAI: number;
+  [token: string]: number; // Allows for additional tokens if needed
+}

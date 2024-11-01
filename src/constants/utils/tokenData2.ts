@@ -15,16 +15,21 @@ export const tokenData2 = [
     {
       token: "USDC",
       icon: "/USDC.svg",
-      tokenPrice: "N/A",
+      tokenPrice: "0",
     },
     {
       token: "USDT",
       icon: "/usdt.svg",
-      tokenPrice: "N/A",
+      tokenPrice: "0",
     },
     {
       token: "DAI",
       icon: "/dai.svg",
-      tokenPrice: "N/A",
+      tokenPrice: "0",
+    },
+    {
+      token: "TETHER",
+      icon: "/tether.svg",
+      tokenPrice: "0",
     },
 ];

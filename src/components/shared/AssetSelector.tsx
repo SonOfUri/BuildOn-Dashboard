@@ -20,22 +20,22 @@ const AssetSelector: React.FC<AssetSelectorProps> = ({
   const [availableBal, setAvailableBalance] = useState("0")
   
   
-  // Update token prices dynamically when fetched
-  useEffect(() => {
-    if (etherPrice || linkPrice) {
-      const updatedTokenData = defaultTokenData.map((token) => {
-        if (token.token === "ETH") {
-          
-          return { ...token, tokenPrice: Number(etherPrice) || 2500 };
-        } else if (token.token === "LINK") {
-         
-          return { ...token, tokenPrice: Number(linkPrice) || 11 };
-        }
-        return token;
-      });
-      setSelectedToken(updatedTokenData[0]); // Update token data with fetched prices
+useEffect(() => {
+  if (etherPrice || linkPrice ) {
+    defaultTokenData.forEach((token) => {
+      if (token.token === "ETH") {
+        token.tokenPrice = Number(etherPrice) || 2500;
+      } else if (token.token === "LINK") {
+        token.tokenPrice = Number(linkPrice) || 11;
+      } 
+    });
+    const updatedSelectedToken = defaultTokenData.find((token) => token.token === selectedToken.token);
+    if (updatedSelectedToken) {
+      setSelectedToken({ ...updatedSelectedToken });
     }
-  }, [etherPrice, linkPrice]);
+  }
+}, [etherPrice, linkPrice]);
+  
 
   // Fetch wallet balance based on the selected token
   useEffect(() => {

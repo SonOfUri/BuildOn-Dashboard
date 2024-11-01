@@ -52,9 +52,10 @@ const Collateral = () => {
 
     const handleDepositClick = (token:string) => {
         if (token === "ETH" || token === "LINK") {
+            toast.warning(`be sure to WITHDRAW your ${token} as this is for testing purpose`,{ duration: 5000 });
             router.push("/transact/deposit");
         } else {
-            toast.warning(`${token} support not available on the testnet.`,{ duration: 1000 });
+            toast.warning(`${token} support not available at the moment.`,{ duration: 1000 });
         }
     };
 

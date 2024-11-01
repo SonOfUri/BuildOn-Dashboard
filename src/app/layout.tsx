@@ -50,7 +50,7 @@ export default function RootLayout({
             <section className={`${shareTechMono.className} ${zenDots.variable} ${outfit.variable} antialiased w-full relative px-4 py-2 bg-black`}
             >
               <Background /> 
-                <main className="w-full h-screen overflow-y-auto absolute left-0 top-0 z-10">
+                <main className="w-full h-screen overflow-y-auto absolute left-0 top-0 z-10 mb-6 sm:mb-0">
                   {children}
                 </main>
             </section>

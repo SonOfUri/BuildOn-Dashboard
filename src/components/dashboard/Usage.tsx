@@ -27,7 +27,7 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
 
   // Calculate total borrowed from filtered requests
   const calculateTotalBorrowed = async () => {
-    if (filteredReq.length) {
+    if (activeReq && filteredReq.length) {
       const values = await Promise.all(
         filteredReq.map(async (req) => {
           const usdValue = await contract.getUsdValue(req.tokenAddress, 1, 0);
@@ -42,7 +42,7 @@ const Usage = ({ activeReq, collateralVal }: UsageProps) => {
 
   useEffect(() => {
     calculateTotalBorrowed();
-  }, [filteredReq]);
+  }, [filteredReq, activeReq]);
 
   const powerLeft = collateralVal ? (100 - ((totalBorrowed * 100) / (collateralVal * 0.8))) : 0;
   const actualPower = isNaN(powerLeft) ? 0 : powerLeft;
