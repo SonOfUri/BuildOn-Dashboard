@@ -27,9 +27,4 @@ export const tokenData2 = [
       icon: "/dai.svg",
       tokenPrice: "0",
     },
-    {
-      token: "TETHER",
-      icon: "/tether.svg",
-      tokenPrice: "0",
-    },
 ];

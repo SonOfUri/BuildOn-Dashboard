@@ -186,6 +186,9 @@ export const Header = () => {
                     <Link href="/marketplace" className={`block py-2 ${isActive("/marketplace")}`}>
                         Marketplace
                     </Link>
+                    <Link href="/supportedassets" className={`block py-2 ${isActive("/supportedassets")}`}>
+                        Assets
+                    </Link>
                 </nav>
             )}
 

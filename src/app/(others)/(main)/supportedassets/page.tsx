@@ -107,7 +107,7 @@ const SupportedTokens = () => {
                         </button>
                         {expandedToken === token.id && (
                             <div className="mt-4 bg-gray-900 p-4 rounded-lg text-sm">
-                                <p className="text-gray-300 mb-2">{token.description}</p>
+                                <p className="text-gray-300 mb-4">{token.description}</p>
                                 <div className="flex items-center justify-between mb-2">
                                     <span className="font-semibold">Platform:</span>
                                     {/* <span>{token.platform}</span> */}
@@ -115,7 +115,7 @@ const SupportedTokens = () => {
 
                                 </div>
 
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-4">
                                     <span
                                         className="cursor-pointer underline decoration-dotted"
                                         onClick={() => token.price && copyToClipboard(token.price.toFixed(2))}
@@ -124,37 +124,37 @@ const SupportedTokens = () => {
                                     </span>
 
                                 </div>
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-3">
                                     <span className="font-semibold">Market Cap:</span>
                                     <span>${token.market_cap.toLocaleString()}</span>
                                 </div>
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-3">
                                     <span className="font-semibold">24h Volume:</span>
                                     <span>${token.volume_24h.toLocaleString()}</span>
                                 </div>
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-3">
                                     <span className="font-semibold">Circulating Supply:</span>
                                     <span>{token.circulating_supply.toLocaleString()}</span>
                                 </div>
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-3">
                                     <span className="font-semibold">Total Supply:</span>
                                     <span>{token.total_supply.toLocaleString()}</span>
                                 </div>
-                                <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center justify-between mb-3">
                                     <span className="font-semibold">Max Supply:</span>
                                     <span>{token.max_supply ? token.max_supply.toLocaleString() : "N/A"}</span>
                                 </div>
 
                                 <h3 className="text-lg font-semibold mt-4">Contracts</h3>
                                 {token.contracts && token.contracts.length > 0 ? (
-                                    <ul className="list-disc list-inside space-y-2 mt-2">
+                                    <ul className="list-disc list-inside space-y-3 mt-2">
                                         {token.contracts.map((contract) => (
-                                            <li key={contract.contract} className="flex items-center justify-between">
+                                            <li key={contract.contract} className="flex items-center justify-between flex-wrap max-w-full">
                                                 <span>
                                                     {contract.platform} ({contract.type}):
                                                 </span>
                                                 <span
-                                                    className="text-blue-400 cursor-pointer underline decoration-dotted"
+                                                    className="text-blue-400 cursor-pointer underline decoration-dotted break-words max-w-[95%]"
                                                     onClick={() => copyToClipboard(contract.contract)}
                                                 >
                                                     {contract.contract}
